@@ -41,10 +41,8 @@ The platform focuses on clear results, transparency, multilingual accessibility,
 
 ## Demo UI (Mockup)
 
-Include your demo UI screenshot here.
-
 ```
-![Truth-First  Demo UI](demo-ui-truth-first.png)
+![Demo UI - Truth-First](https://github.com/raja-sec/truth-first/blob/cca103a7f52ac5d6472bd3ec441a35fa0a3ffa69/demo-ui-truth-first.png)
 
 ```
 
@@ -54,10 +52,8 @@ Shows the planned interface for selecting scan type and viewing recent analysis 
 
 ## System Architecture (Concept)
 
-Include your system architecture diagram here.
-
 ```
-![Tentative Architecture Overview](Untitled Diagram.jpg)
+![Tentative Architecture Overview](https://github.com/raja-sec/truth-first/blob/cca103a7f52ac5d6472bd3ec441a35fa0a3ffa69/Untitled%20Diagram.jpg)
 
 ```
 
