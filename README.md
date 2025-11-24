@@ -44,7 +44,7 @@ The platform focuses on clear results, transparency, multilingual accessibility,
 Include your demo UI screenshot here.
 
 ```
-![Truth-First  Demo UI]{demo-ui-truth-first.png}
+![Truth-First  Demo UI](demo-ui-truth-first.png)
 
 ```
 
@@ -57,7 +57,7 @@ Shows the planned interface for selecting scan type and viewing recent analysis 
 Include your system architecture diagram here.
 
 ```
-![Tentative Architecture Overview]{Untitled Diagram.jpg}
+![Tentative Architecture Overview](Untitled Diagram.jpg)
 
 ```
 
