@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthFirst Detection Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid #3b82f6;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 24pt;
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 10pt;
+            color: #6b7280;
+        }
+        
+        .case-info {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .case-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .case-info-item { padding: 5px 0; }
+        .case-info-label { font-weight: bold; color: #4b5563; font-size: 9pt; }
+        .case-info-value { color: #1f2937; font-size: 10pt; }
+        
+        .verdict-card {
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .verdict-label {
+            font-size: 14pt;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+        
+        .verdict-value {
+            font-size: 32pt;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .confidence-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .confidence-item { text-align: center; }
+        .confidence-item-label { font-size: 9pt; color: #6b7280; margin-bottom: 5px; }
+        .confidence-item-value { font-size: 18pt; font-weight: bold; color: #1f2937; }
+        
+        .chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .flags-list { list-style: none; padding: 0; }
+        
+        .flag-item {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        
+        .flag-icon { color: #ef4444; font-weight: bold; margin-right: 8px; }
+        
+        /* --- PDF-SAFE TABLE LAYOUT FOR GRAD-CAM --- */
+        .grad-cam-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 20px 0;
+            margin-bottom: 20px;
+            table-layout: fixed;
+        }
+        
+        .grad-cam-cell {
+            width: 50%;
+            vertical-align: top;
+            text-align: center;
+        }
+        
+        .grad-cam-title {
+            font-size: 10pt;
+            font-weight: bold;
+            color: #4b5563;
+            margin-bottom: 10px;
+        }
+        
+        .grad-cam-cell img {
+            max-width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .grad-cam-caption {
+            font-size: 8pt;
+            color: #6b7280;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        /* ------------------------------------------- */
+        
+        .explanation-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .explanation-icon { color: #3b82f6; font-weight: bold; margin-right: 8px; }
+        
+        .action-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .action-box h4 { color: #92400e; margin-bottom: 10px; }
+        
+        .technical-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .technical-item { padding: 8px 0; }
+        .technical-label { font-size: 9pt; color: #6b7280; font-weight: bold; }
+        .technical-value { font-size: 9pt; color: #1f2937; word-break: break-all; }
+        
+        .disclaimer-box {
+            background: #fffbeb;
+            border: 2px solid #fbbf24;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            page-break-inside: avoid;
+        }
+        
+        .disclaimer-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+        
+        .disclaimer-list { list-style: disc; margin-left: 20px; }
+        
+        .disclaimer-list li {
+            margin-bottom: 8px;
+            color: #1f2937;
+            font-size: 9pt;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            text-align: center;
+            font-size: 9pt;
+            color: #6b7280;
+        }
+        
+        .page-break { page-break-after: always; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛡️ TruthFirst Detection Report</h1>
+        <p class="subtitle">AI-Powered Deepfake & Phishing Detection</p>
+    </div>
+    
+    <div class="case-info">
+        <div class="case-info-grid">
+            <div class="case-info-item">
+                <div class="case-info-label">Case ID:</div>
+                <div class="case-info-value">{{ case_id }}</div>
+            </div>
+            <div class="case-info-item">
+                <div class="case-info-label">Analyzed:</div>
+                <div class="case-info-value">{{ analyzed_at }}</div>
+            </div>
+            <div class="case-info-item">
+                <div class="case-info-label">Report Generated:</div>
+                <div class="case-info-value">{{ generated_at }}</div>
+            </div>
+            <div class="case-info-item">
+                <div class="case-info-label">Case Type:</div>
+                <div class="case-info-value">{{ case_type }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="verdict-card" style="background: {{ verdict_bg_color }}; border: 2px solid {{ verdict_color }};">
+        <div class="verdict-label">VERDICT</div>
+        <div class="verdict-value" style="color: {{ verdict_color }};">{{ verdict }}</div>
+        
+        <div class="confidence-info">
+            <div class="confidence-item">
+                <div class="confidence-item-label">Confidence</div>
+                <div class="confidence-item-value">{{ confidence_percent }}%</div>
+            </div>
+            <div class="confidence-item">
+                <div class="confidence-item-label">Risk Score</div>
+                <div class="confidence-item-value">{{ risk_score }}/10</div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <img src="data:image/png;base64,{{ chart_base64 }}" alt="Confidence Chart" />
+        </div>
+    </div>
+    
+    {% if flags %}
+    <div class="section">
+        <h2 class="section-title">⚠️ Detected Issues</h2>
+        <ul class="flags-list">
+            {% for flag in flags %}
+            <li class="flag-item">
+                <span class="flag-icon">⚠️</span>{{ flag }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    {% if has_grad_cam %}
+    <div class="section page-break">
+        <h2 class="section-title">🔍 Visual Analysis (Grad-CAM)</h2>
+        
+        <table class="grad-cam-table">
+            <tr>
+                <td class="grad-cam-cell">
+                    <div class="grad-cam-title">Original Image</div>
+                    {% if original_image_base64 %}
+                        <img src="data:image/jpeg;base64,{{ original_image_base64 }}" alt="Original Image" />
+                    {% else %}
+                        <div style="padding: 20px; color: #999; border: 1px solid #ddd;">Not Available</div>
+                    {% endif %}
+                    <div class="grad-cam-caption">The image you submitted for analysis</div>
+                </td>
+                
+                <td class="grad-cam-cell">
+                    <div class="grad-cam-title">Model Attention Heatmap (224×224)</div>
+                    {% if grad_cam_base64 %}
+                        <img src="data:image/jpeg;base64,{{ grad_cam_base64 }}" alt="Grad-CAM Heatmap" />
+                    {% else %}
+                        <div style="padding: 20px; color: #999; border: 1px solid #ddd;">Not Available</div>
+                    {% endif %}
+                    <div class="grad-cam-caption">
+                        Red = Suspicious regions | Yellow = Noted areas | Blue = Normal regions  
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="explanation-box">
+            <span class="explanation-icon">📌</span>
+            <strong>What This Shows:</strong> The heatmap shows where the AI model focused when analyzing the image. Red areas indicate regions that appeared artificial or suspicious to the model.
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="section">
+        <h2 class="section-title">📖 What This Means</h2>
+        <div class="explanation-box">
+            <span class="explanation-icon">🔍</span>
+            <strong>Plain English Explanation:</strong><br/><br/>
+            {{ plain_explanation }}
+        </div>
+        
+        <div class="action-box">
+            <h4>⏳ Recommended Actions:</h4>
+            <p style="white-space: pre-line;">{{ action_recommendation }}</p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title">🔧 Technical Metadata</h2>
+        <div class="technical-grid">
+            <div class="technical-item">
+                <div class="technical-label">File Name:</div>
+                <div class="technical-value">{{ file_name }}</div>
+            </div>
+            <div class="technical-item">
+                <div class="technical-label">File Size:</div>
+                <div class="technical-value">{{ file_size }}</div>
+            </div>
+            <div class="technical-item" style="grid-column: 1 / -1;">
+                <div class="technical-label">File Hash (SHA-256):</div>
+                <div class="technical-value">{{ file_hash }}</div>
+            </div>
+            <div class="technical-item">
+                <div class="technical-label">Model Version:</div>
+                <div class="technical-value">{{ model_version }}</div>
+            </div>
+            <div class="technical-item">
+                <div class="technical-label">Analysis Date:</div>
+                <div class="technical-value">{{ analyzed_at }}</div>
+            </div>
+        </div>
+        <p style="font-size: 8pt; color: #6b7280; margin-top: 10px;">
+            <strong>Note:</strong> The file hash is a unique fingerprint of the uploaded file's contents. It can be used to verify file integrity but is not legal proof.
+        </p>
+    </div>
+    
+    <div class="disclaimer-box">
+        <div class="disclaimer-title">⚖️ Important Legal Disclaimer</div>
+        <ul class="disclaimer-list">
+            <li>This report is generated by AI with 92.8% accuracy on test data but is not infallible</li>
+            <li>This is NOT a legal determination or court-admissible evidence</li>
+            <li>Use this report as supporting information only, not as definitive proof</li>
+            <li>False reports to authorities are prosecutable under Indian Penal Code</li>
+            <li>Respect privacy and legal rights of all individuals depicted in content</li>
+            <li>Consult legal counsel for serious matters requiring official action</li>
+            <li>TruthFirst is not responsible for how this report is used</li>
+        </ul>
+    </div>
+    
+    <div class="footer">
+        <p><strong>Generated by TruthFirst AI Detection System</strong></p>
+        <p>Report ID: {{ case_id }} | Generated: {{ generated_at }}</p>
+        <p style="margin-top: 10px; font-size: 8pt;">
+            This report is for informational purposes only. For questions or support, visit truthfirst.ai
+        </p>
+    </div>
+</body>
+</html>

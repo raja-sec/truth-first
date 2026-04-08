@@ -1,0 +1,39 @@
+# Git & Docker
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Environments & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Secrets
+.env
+.env.*
+
+# Heavy ML Models (Downloaded at runtime)
+models/weights/*.pth
+models/weights/*.pt
+models/email_detection/phishing_bert_final_v1/*.bin
+models/email_detection/phishing_bert_final_v1/*.safetensors
+
+# Local User Data
+uploads/
+temp/
+
+# Local Clutter
+archive/
+*.log
+.vscode/
+.idea/
+.DS_Store

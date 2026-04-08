@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "howItWorks": "How It Works",
+    "startInvestigation": "Start Investigation"
+  },
+  "home": {
+    "hero": {
+      "title": "Multi-Modal Deception Detection",
+      "subtitle": "Defending against AI-generated media, deepfakes, and social engineering through advanced forensic analysis.",
+      "cta": "Start Investigation"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": "Upload Content",
+      "step2": "AI Analysis",
+      "step3": "Get Results"
+    }
+  },
+  "form": {
+    "personal": {
+      "title": "Personal Information",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "location": "Location"
+    },
+    "caseDetails": {
+      "title": "Case Details",
+      "type": "Content Type",
+      "source": "Source",
+      "description": "Description"
+    },
+    "upload": {
+      "title": "Upload Content",
+      "dragDrop": "Drag and drop or click to upload"
+    },
+    "otp": {
+      "title": "Verify Email",
+      "sendOTP": "Send Verification Code",
+      "enterOTP": "Enter 6-digit code",
+      "verify": "Verify",
+      "submit": "Submit Case"
+    }
+  },
+  "results": {
+    "verdict": "Verdict",
+    "confidence": "Confidence",
+    "riskScore": "Risk Score",
+    "downloadPDF": "Download PDF Report",
+    "reportCrime": "Report to Cyber Crime Portal"
+  }
+}

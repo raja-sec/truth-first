@@ -1,0 +1,8 @@
+# Local dev notes and zips
+.vscode/
+*.zip
+better_tree.py
+claude-context.txt
+doc-context-i-pasted.txt
+old-docker-compose.yml
+output.txt

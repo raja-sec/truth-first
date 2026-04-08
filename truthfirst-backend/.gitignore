@@ -1,0 +1,31 @@
+# Environments & Caches
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+.pytest_cache/
+
+# Secrets
+.env
+.env.*
+
+# Heavy ML Models
+models/weights/*.pth
+models/weights/*.pt
+models/email_detection/phishing_bert_final_v1/*.bin
+models/email_detection/phishing_bert_final_v1/*.safetensors
+
+# User Data & Logs
+uploads/
+temp/
+*.log
+*.pdf
+
+# OS & IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Local Clutter
+archive/

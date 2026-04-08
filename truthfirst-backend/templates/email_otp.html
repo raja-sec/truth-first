@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthFirst - Email Verification</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .otp-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 8px;
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .info {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #856404;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666666;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header">
+    <h1>🛡️ TruthFirst</h1>
+    <p>Multi-modal Investigation Platform</p>
+</div>
+
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <div class="greeting">
+                Hello,
+            </div>
+            
+            <p style="font-size: 16px; color: #333333;">
+                Thank you for using TruthFirst. To verify your email address and proceed with case submission, please use the verification code below:
+            </p>
+            
+            <!-- OTP Box -->
+            <div class="otp-box">
+                {{ otp_code }}
+            </div>
+            
+            <!-- Info -->
+            <div class="info">
+                <strong>Important:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>This code will expire in <strong>{{ validity_minutes }} minutes</strong></li>
+                    <li>Use this code only on the TruthFirst platform</li>
+                    <li>Do not share this code with anyone</li>
+                    <li>You have <strong>3 attempts</strong> to enter the correct code</li>
+                </ul>
+            </div>
+            
+            <!-- Warning -->
+            <div class="warning">
+                ⚠️ <strong>Security Notice:</strong><br>
+                If you didn't request this verification code, please ignore this email. Your account security is not compromised.
+            </div>
+            
+            <p style="font-size: 14px; color: #666666; margin-top: 30px;">
+                Need help? Our system is designed to protect your privacy and security. Each verification code is unique and time-limited.
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p style="margin: 0 0 10px 0;">
+                <strong>TruthFirst</strong> - AI-Powered Deepfake & Phishing Detection
+            </p>
+            <p style="margin: 0;">
+                This is an automated email. Please do not reply to this message.
+            </p>
+            <p style="margin: 10px 0 0 0;">
+                © 2025 TruthFirst. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
