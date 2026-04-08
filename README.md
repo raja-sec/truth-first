@@ -12,7 +12,7 @@ As generative AI blurs the line between reality and fabrication, the threat of d
 
 By utilizing a multi-modal architecture, TruthFirst analyzes **Images, Videos, URLs, and Emails** to detect manipulation. Beyond simple detection, it provides explainable AI visualizer outputs (Grad-CAM), generates professional forensic PDF reports, and provides legally compliant guidance for reporting verified threats to official cybercrime authorities.
 
-[**View Live Demo**](#) *(Placeholder for deployment link)*
+[**View Live Demo**](https://truthfirst-lac.vercel.app)
 
 ---
 
